@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cdac.tokendemo.controller.MainController">
+    <top>
+        <HBox styleClass="padding, bg-color-bright-blue">
+            <ImageView preserveRatio="true">
+                <Image url="@../img/navy_logo.png"/>
+            </ImageView>
+        </HBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" styleClass="padding-small">
+            <HBox styleClass="border-color-darkblue, border-radius-small">
+                <VBox HBox.hgrow="ALWAYS" styleClass="border-right">
+                    <HBox alignment="CENTER"
+                          styleClass="padding, press-effect, bg-color-greenish-blue, bg-border-radius-small-top-left">
+                        <Label styleClass="text-white" focusTraversable="true"
+                               text="TOKEN WRITE OPERATION"/>
+                    </HBox>
+                    <Region styleClass="min-height-medium"/>
+                    <VBox alignment="CENTER" styleClass="padding-small">
+                        <TextField fx:id="inputTextField" styleClass="input-field"
+                                   promptText="Enter text to be written to token..."/>
+                        <Region styleClass="min-height"/>
+                        <Button fx:id="writeDataBtn" styleClass="press-effect, btn-medium" text="WRITE DATA"/>
+                    </VBox>
+                    <Region styleClass="min-height-medium"/>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS" styleClass="border-left">
+                    <HBox alignment="CENTER"
+                          styleClass="padding, press-effect, bg-color-greenish-blue, bg-border-radius-small-top-right">
+                        <Label styleClass="text-white" focusTraversable="true"
+                               text="TOKEN READ OPERATION"/>
+                    </HBox>
+                    <Region styleClass="min-height-medium"/>
+                    <VBox alignment="CENTER" styleClass="padding-small">
+                        <Label fx:id="tokenReadLabel" styleClass="label-border-style"/>
+                        <Region styleClass="min-height"/>
+                        <Button fx:id="readDataBtn" styleClass="press-effect, btn-medium" text="READ DATA"/>
+                    </VBox>
+                    <Region styleClass="min-height-medium"/>
+                </VBox>
+            </HBox>
+            <HBox alignment="CENTER" styleClass="padding-medium">
+                <Label fx:id="messageLabel"/>
+            </HBox>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" styleClass="padding, bg-color-bright-blue">
+            <Label styleClass="text-white" text="TOKEN POC-1.0"/>
+        </HBox>
+    </bottom>
+</BorderPane>
