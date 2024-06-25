@@ -68,12 +68,19 @@ public class MainController {
     }
 
     private void startWriting() {
-        //dispenses token on card writer
+        updateUi("Dispensing token. Please wait...");
+//        dispenses token on card writer
         if (!TokenDispenserUtil.dispenseToken()) {
             updateUi("Kindly check the Token Dispenser and try again.");
             enableControls(inputTextField, writeDataBtn, readDataBtn);
             return;
         }
+        try {
+            Thread.sleep(TimeUnit.SECONDS.toMillis(TOKEN_DROP_SLEEP_TIME_IN_SEC));
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        updateUi("Initiating data writing process. Please wait...");
         try {
             startWriteProcedureCall();
         } catch (GenericException | NoReaderOrCardException ex) {
@@ -90,6 +97,7 @@ public class MainController {
     }
 
     private void startReading() {
+        updateUi("");
         try {
             startReadProcedureCall();
         } catch (GenericException | NoReaderOrCardException ex) {
@@ -148,13 +156,6 @@ public class MainController {
             Thread.currentThread().interrupt();
         }
         updateUi("Preparing the token for data writing. Please wait.");
-
-        try {
-            Thread.sleep(TimeUnit.SECONDS.toMillis(TOKEN_DROP_SLEEP_TIME_IN_SEC));
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-
         LOGGER.log(Level.INFO, () -> "***Token: Calling waitForConnect API.");
         crWaitForConnectResDto = Asn1CardTokenUtil.waitForConnect(MANTRA_CARD_WRITER_NAME);
         decodedHexCsn = Base64.getDecoder().decode(crWaitForConnectResDto.getCsn());

@@ -17,6 +17,7 @@ module com.cdac.tokendemo {
     exports com.cdac.tokendemo;
     exports com.cdac.tokendemo.controller;
     opens com.cdac.tokendemo.controller to javafx.fxml;
-
+    exports com.cdac.tokendemo.dto;
+    opens com.cdac.tokendemo.dto to javafx.fxml;
     requires static lombok;
 }
